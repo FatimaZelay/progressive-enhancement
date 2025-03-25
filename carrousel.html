@@ -5,38 +5,127 @@
 		<meta name="viewport" content="width=device-width">
 		<title>Carrousel / Progressive Enhancement / FDND</title>
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-		<link href="assets/styles.css" rel="stylesheet">
-		<style>
-			/* Hint: welk layout model is handig om content naast elkaar te zetten? */
-		</style>
-		<script type="module">
-			/* Schrijf hier eventueel je client-side JavaScript */
-		</script>
+		<link href="assets/styles.css" rel="stylesheet" />
+		<link href="assets" rel="afbeeldingen">
+
 	</head>
+
 	<body>
-		<h1>Carrousel</h1>
-
-		<!-- Content: 
+	
+			<title>Carrousel</title>
+			<style>
+				* {
+					margin: 0;
+					padding: 0;
+					box-sizing: border-box;
+				}
 		
-		“Websites leren bouwen, én praktijkervaring opdoen?”
+				body {
+					font-family: Arial, sans-serif;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					height: 100vh;
+					background-color: #f4f4f4;
+				}
 		
-		“FDND is de enige HBO-opleiding voor Frontend Development in Nederland, in twee jaar stomen wij jou klaar voor het werkveld”
+				.carousel {
+					width: 80%;
+					overflow: hidden; /* Verbergt de rest van de afbeeldingen die buiten het zichtbare gebied vallen */
+					position: relative;
+				}
 		
-		“Je werkt bij ons aan échte projecten voor échte opdrachtgevers”
+				.carousel ul {
+					display: flex;
+					transition: transform 0.5s ease; /* Zorgt voor een vloeiende overgang tussen de afbeeldingen */
+					padding: 0;
+					list-style: none;
+				}
 		
-		“In het studiomodel werken studenten onder begeleiding van coaches en experts uit het vakgebied aan praktijkgerichte opdrachten”
+				.carousel li {
+					min-width: 100%;
+					transition: transform 0.5s ease;
+				}
 		
-		“Bij FDND leer je websites bouwen en andere belangrijke skills die jij in de praktijk toe kan passen”
+				.carousel img {
+					width: 100%;
+					display: block;
+				}
 		
-		“Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5”
-
-		-->
-
+				/* Navigatieknoppen */
+				.prev, .next {
+					position: absolute;
+					top: 50%;
+					transform: translateY(-50%);
+					background-color: rgba(0, 0, 0, 0.5);
+					color: white;
+					padding: 10px;
+					border: none;
+					font-size: 24px;
+					cursor: pointer;
+				}
+		
+				.prev {
+					left: 10px;
+				}
+		
+				.next {
+					right: 10px;
+				}
+		
+				.prev:hover, .next:hover {
+					background-color: rgba(0, 0, 0, 0.8);
+				}
+			</style>
+		</head>
+		<body>
+		
+			<div class="carousel">
+				<ul>
+					<li><img src="assets/img1.png" alt="Afbeelding 1"></li>
+					<li><img src="assets/img2.png" alt="Afbeelding 2"></li>
+					<li><img src="assets/img3.png" alt="Afbeelding 3"></li>
+				</ul>
+				
+		
+				<button class="prev">❮</button>
+				<button class="next">❯</button>
+			</div>
+		
+			<script>
+				const prevButton = document.querySelector('.prev');
+				const nextButton = document.querySelector('.next');
+				const carousel = document.querySelector('.carousel ul');
+				const totalSlides = document.querySelectorAll('.carousel li').length;
+				let currentSlide = 0;
+		
+				// Functie om de carrousel naar de vorige afbeelding te bewegen
+				prevButton.addEventListener('click', () => {
+					currentSlide = (currentSlide === 0) ? totalSlides - 1 : currentSlide - 1;
+					updateCarousel();
+				});
+		
+				// Functie om de carrousel naar de volgende afbeelding te bewegen
+				nextButton.addEventListener('click', () => {
+					currentSlide = (currentSlide === totalSlides - 1) ? 0 : currentSlide + 1;
+					updateCarousel();
+				});
+		
+				// Update de carrousel door de lijst van afbeeldingen te verplaatsen
+				function updateCarousel() {
+					const offset = -currentSlide * 100;
+					carousel.style.transform = `translateX(${offset}%)`;
+				}
+			</script>
+		
+		</body>
+		</html>
+<!-- 		
 		<details open>
 			<summary>Demo video</summary>
 			<video src="assets/carrousel.mp4" width="1298" height="469" controls muted loop>
 				<a href="assets/carrousel.mp4">assets/carrousel.mp4</a>
 			</video>
-		</details>
+		</details> -->
 	</body>
 </html>
