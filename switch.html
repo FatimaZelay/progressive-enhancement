@@ -32,8 +32,6 @@
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
 }
 
 .slider:before {
@@ -58,7 +56,6 @@ input:focus + .slider {
 
 input:checked + .slider:before {
   -webkit-transform: translateX(60px); 
-  -ms-transform: translateX(60px);
   transform: translateX(60px);
 }
 
@@ -71,14 +68,16 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-h1 {
+
+h1 { @supports (-webkit-text-fill-color:text) 
+	
+	{
 	font-size: 72px;
     background: -webkit-linear-gradient(#fffcf7, #e0b2d9,#c87272 );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
-
+}
 			/* Hint: Dit component kun je volledig met HTML en CSS bouwen */
 
 			/* Hint: Hoe ver ga je qua styling? Vraag jezelf dit altijd af */
